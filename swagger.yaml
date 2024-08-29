@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Remote Work Productivity API
+  description: API for managing tasks, tracking time, and more.
+  version: 1.0.0
+paths:
+  /api/tasks:
+    post:
+      summary: Create a new task
+      tags:
+        - Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Design Database Schema"
+                description:
+                  type: string
+                  example: "Create the initial database schema for the project."
+                dueDate:
+                  type: string
+                  format: date
+                  example: "2024-09-15"
+                priority:
+                  type: string
+                  example: "High"
+                status:
+                  type: string
+                  example: "Pending"
+      responses:
+        "201":
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        "400":
+          description: Invalid input
+components:
+  schemas:
+    Task:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        dueDate:
+          type: string
+        priority:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
